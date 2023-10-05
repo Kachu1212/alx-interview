@@ -6,3 +6,4 @@
 
 ## List of Projects
 - [0x00-pascal_triangle](./0x00-pascal_triangle) - Project on Pascal's Triangle
+- [0x01-lockboxes](./0x01-lockboxes) - Project on lock boxes.
