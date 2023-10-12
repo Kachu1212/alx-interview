@@ -7,4 +7,4 @@
 ## List of Projects
 - [0x00-pascal_triangle](./0x00-pascal_triangle) - Project on Pascal's Triangle
 - [0x01-lockboxes](./0x01-lockboxes) - Project on lock boxes.
-- [0x02-Minimum Operations](./0x02-Minimum Operations) - Project on Minimum Operations
+- [0x02-Minimum_Operations](./0x02-Minimum_Operations) - Project on Minimum Operations
