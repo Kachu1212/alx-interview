@@ -10,3 +10,4 @@
 - [0x02-Minimum_Operations](./0x02-Minimum_Operations) - Project on Minimum Operations
 - [0x03-log_parsing](./0x03-log_parsing) - Project on log parsing
 - [0x04-utf8_validation](./0x04-utf8_validation) - Project on UTF-8 Validation
+- [0x05-nqueens](./0x05-nqueens) - Project on Nqueens chessboard
