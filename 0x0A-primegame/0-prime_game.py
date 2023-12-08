@@ -1,66 +1,32 @@
 #!/usr/bin/python3
-'''Prime Game'''
+"""Prime game winner determination"""
 
 
 def isWinner(x, nums):
-    '''finds the winner'''
-    winnerCounter = {'Maria': 0, 'Ben': 0}
-
-    for i in range(x):
-        roundWinner = isRoundWinner(nums[i], x)
-        if roundWinner is not None:
-            winnerCounter[roundWinner] += 1
-
-    if winnerCounter['Maria'] > winnerCounter['Ben']:
-        return 'Maria'
-    elif winnerCounter['Ben'] > winnerCounter['Maria']:
-        return 'Ben'
-    else:
+    """Prime game winner determination"""
+    if x < 1 or not nums:
         return None
 
+    m_wins = 0
+    b_wins = 0
 
-def isRoundWinner(n, x):
-    '''find round winner'''
-    list = [i for i in range(1, n + 1)]
-    players = ['Maria', 'Ben']
+    # generate a list of prime number based on the max numbers in num
+    n = max(nums)
+    primes = [True] * (n + 1)
+    primes[0] = primes[1] = False
 
-    for i in range(n):
-        # get current player
-        currentPlayer = players[i % 2]
-        selectedIdxs = []
-        prime = -1
-        for idx, num in enumerate(list):
-            # if already picked prime num then
-            # find if num is multipl of the prime num
-            if prime != -1:
-                if num % prime == 0:
-                    selectedIdxs.append(idx)
-            # else check is num is prime then pick it
-            else:
-                if isPrime(num):
-                    selectedIdxs.append(idx)
-                    prime = num
-        # if failed to pick then current player lost
-        if prime == -1:
-            if currentPlayer == players[0]:
-                return players[1]
-            else:
-                return players[0]
-        else:
-            for idx, val in enumerate(selectedIdxs):
-                del list[val - idx]
-    return None
+    for x in range(2, int(n**0.5) + 1):
+        if primes[x]:
+            for y in range(x**2, n + 1, x):
+                primes[y] = False
 
+    # count the no of pm less than n i nums
+    for n in nums:
+        count = sum(primes[2:n+1])
+        b_wins += count % 2 == 0
+        m_wins += count % 2 == 1
 
-def isPrime(n):
-    # 0, 1, even numbers greater than 2 are NOT PRIME
-    if n == 1 or n == 0 or (n % 2 == 0 and n > 2):
-        return False
-    else:
-        # Not prime if divisable by another number less
-        # or equal to the square root of itself.
-        # n**(1/2) returns square root of n
-        for i in range(3, int(n**(1/2))+1, 2):
-            if n % i == 0:
-                return "Not prime"
-        return True
+    if m_wins == b_wins:
+        return None
+
+    return 'Maria' if m_wins > b_wins else 'Ben'
